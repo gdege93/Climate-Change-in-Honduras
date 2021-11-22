@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Boston</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+    <link href='https://mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/simplex/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        .hand-click {
+          cursor: pointer;
+        }
+
+        .hand-click:hover {
+          color: Chartreuse;
+        }
+
+        .mapboxgl-ctrl-top-right {
+          margin: 35px 10px 0 0;
+        }
+
+        .legend {
+          background-color: #fff;
+          border-radius: 3px;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+          font-family: 'Quicksand', sans-serif;
+          font-size: 110%;
+          padding: 10px;
+          opacity: 0.6;
+          position: fixed;
+          top: 3%;
+          right: 3%;
+          z-index: 3;
+          color: #000;
+        }
+        .legend h4 {
+          margin: 0 0 10px;
+          color: #fff;
+        }
+        .legend div span {
+          border-radius: 50%;
+          display: inline-block;
+          height: 10px;
+          margin-right: 5px;
+          width: 10px;
+        }
+
+        .legend:hover {
+          opacity: 1.0;
+        }
+
+        .legend1 .bar {
+          height: 10px;
+          width: 100%;
+          background: linear-gradient(to right, #000,#000,#fff);
+        }
+
+        @media screen and (max-height: 650px) {
+          .mobile-hide {display: none;}
+        }
+
+        @media screen and (min-height: 650px) {
+          .mobile-show {display: none;}
+        }
+    </style>
+</head>
+<body>
+
+
+//LEGEND//
+<div id='map'></div>
+<div id='legend10' class='legend mobile-hide'>
+<div>The northern half of Los Angeles,<br>home to 96% of the city's dot_white residents,<br>benefits from the EB-5 projects for employment growth.<p><p>The southern half, where 90% of the residents are dot_dot_black,<br>is excluded.<p></div>
+
+    <div>Dot Density by Race:</div>
+    <div id='legend-title'> </div>
+    <div id='dot_white' class='hand-click'><span style='background-color: #e41a1c' id='dot_white-span'></span>White</div>
+    <div id='dot_black' class='hand-click'><span style='background-color: #00ff00' id='dot_black-span'></span>Black or African American</div>
+    <div id='dot_indigenous' class='hand-click'><span style='background-color: #ff9900' id='dot_indigenous-span'></span>American Indian and Alaska Native</div>
+    <div id='dot_asian' class='hand-click'><span style='background-color: #0000ff' id='dot_asian-span'></span>Asian</div>
+    <div id='dot_pacif' class='hand-click'><span style='background-color: #9900ff' id='dot_pacif-span'></span>Native Hawaiian and Other Pacific Islander</div>
+    <div id='dot_alone' class='hand-click'><span style='background-color: #00ffaa' id='dot_alone-span'></span>Some Other Race</div>
+    <div id='dot_two' class='hand-click'><span style='background-color: #00ffff' id='dot_two-span'></span>Two or More Races</div>
+    <div><p><p>Unemployment Rate Flux</div>
+    <div id='legend1' class='legend1'>
+    <div class='bar'></div>
+    <div>-12.5% to 0 from 0 to 7.5%</div>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/simplex/bootstrap.min.css"></script>
+<script>
+
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoib2xpdmlhcGNzIiwiYSI6ImNrMGp3eGtlNzBmZzQzbW5qYXVneTc4cHUifQ.agG_DR1EQ4aBDnEDDao7Dg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/oliviapcs/ckidofnil2e6y19mh5lat0f4i', // <-- this is where you put your style ID
+    zoom: 11.5,
+    center: [-71.0962, 42.3412],
+    maxZoom: 12.5,
+    minZoom: 10,
+    hash: true
+});
+
+// Get current zoom level for dot translation
+
+map.on('render', function() {
+  var legend_title = document.getElementById('legend-title');
+  legend_title.innerHTML = translate_dots();
+})
+
+function translate_dots() {
+  var zm = map.getZoom();
+  if (zm == 12.5) {
+    return "1 dot = approx. 50 people"
+  } else if (zm < 12.5 && zm >= 11) {
+    return "1 dot = approx. 50 people"
+  }
+}
+
+map.on('load', function () {
+
+    map.addSource('race-dots-LA', {
+      type: 'vector',
+      url: 'mapbox://oliviapcs.btgx28dj'
+    });
+
+    var nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'top-right');
+
+    map.addLayer({
+        'id': 'race',
+        'type': 'circle',
+        'source': 'race-dots-LA',
+        'source-layer': 'LA_race_2015-22iy71',
+        'paint': {
+            // make circles larger as the user zooms
+            'circle-radius': {
+                'base': 2,
+                'stops': [[10, 0.7], [12.5, 2]]
+            },
+
+            'circle-color': {
+              property: 'layer',
+              type: 'categorical',
+              stops: [
+                ['dot_white', '#e41a1c'],
+                ['dot_black', '#00ff00'],
+                ['dot_indigenous', '#ff9900'],
+                ['dot_asian', '#0000ff'],
+                ['dot_pacif', '#9900ff'],
+                ['dot_alone', '#00ffaa'],
+                ['dot_two', '#00ffff']
+              ]
+            }
+        }
+    }, 'waterway-label');
+
+    // Interactive legend logic - start here and experiment
+
+    var filter = ["in", "layer", "dot_white", "dot_dot_black", "dot_indigenous",
+                  "dot_asian", "dot_pacif",
+                  "dot_alone", "dot_two"];
+
+    var groups = [{layer: "dot_white", hex: "#e41a1c"},
+                  {layer: "dot_dot_black", hex: "#00ff00"},
+                  {layer: "dot_indigenous", hex: "#ff9900"},
+                  {layer: "dot_asian", hex: "#0000ff"},
+                  {layer: "dot_pacif", hex: "#9900ff"},
+                  {layer: "dot_alone", hex: "#00ffaa"},
+                  {layer: "dot_two", hex: "#00ffff"}];
+
+    document.getElementById('legend10').addEventListener('click', function(e) {
+
+      var layer = e.target.id;
+      var layer = 'race';
+      var group_span = layer + '-span';
+
+      // get the corresponding hex value for the level
+      var group_index = groups.map(function(x) {
+        return x.layer;
+      }).indexOf(layer);
+
+      var hex = groups[group_index].hex;
+
+      var el = document.getElementById(group_span);
+
+      // check if the level is in the target array; if not, then add it
+      if (filter.indexOf(layer, 1) === -1) {
+        filter.push(layer);
+        map.setFilter(layer, filter);
+        el.style.backgroundColor = hex;
+        el.style.color = "#ffffff";
+      // otherwise, remove it
+      } else {
+        index = filter.indexOf(layer);
+        filter.splice(index, 1);
+        map.setFilter(layer, filter);
+        el.style.backgroundColor = '#c5c8cc';
+        el.style.color = '#c5c8cc';
+      }
+
+    });
+
+    // Preserve filter on zoom
+
+    layerids.map(function(x) {
+
+      map.on('zoom', function() {
+
+        map.setFilter(x.id, filter);
+
+      });
+
+    });
+
+
+});
+
+
+
+
+
+</script>
+
+</body>
+</html>
