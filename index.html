@@ -636,6 +636,26 @@ Climate change will increase the frequency and severity of water scarcity and cl
                 <div class="text-left">
                     <h2 class="section-heading">Departments in Honduras</h2>
                     <h3 class="section-subheading text-muted">issues in each department</h3>
+			<!DOCTYPE html>
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpdmFsaWdvd2RhIiwiYSI6ImNrd2FyaG9ybzB4djIyb29ycHlreWNwMmQifQ.s6pDe9YzZWN5D3oA1cZvQw';
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+style: 'mapbox://styles/shivaligowda/ckwaroxf20ds114n1gs1lll4l', // style URL
+center: [-88, 15.5], // starting position [lng, lat]
+zoom: 9 // starting zoom
+});
+</script>
+
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
