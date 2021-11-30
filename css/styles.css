@@ -10203,12 +10203,12 @@ p {
   }
 }
 ::-moz-selection {
-  background: #ff00cf;
+  background: #20c997;
   text-shadow: none;
 }
 
 ::selection {
-  background: #ff00cf;
+  background:#20c997;
   text-shadow: none;
 }
 
@@ -10337,7 +10337,7 @@ header.masthead .masthead-subheading2 {
   font-weight: 200;
   line-height: 1.5rem;
   margin-bottom: 25px;
-  color: #ff00cf;
+  color: #20c997;
   font-family:"Helvetica Neue", "Raleway", "Droid Serif", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 header.masthead .masthead-heading {
@@ -10384,7 +10384,7 @@ header.masthead .masthead-heading {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #ff00cf;
+  background: #20c997;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -10511,7 +10511,7 @@ header.masthead .masthead-heading {
   color: white;
   border: 7px solid #e9ecef;
   border-radius: 100%;
-  background-color: #ff00cf;
+  background-color: #20c997;
 }
 .timeline > li .timeline-image h4 {
   font-size: 10px;
