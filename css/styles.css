@@ -36,7 +36,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Helvetica Neue",-apple-system, BlinkMacSystemFont,"d", "Segoe UI", Roboto, , Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: "Montserrat",-apple-system, BlinkMacSystemFont,"d", "Segoe UI", Roboto, , Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -59,7 +59,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 100;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -96,11 +96,11 @@ p2 {
   margin-bottom: 1rem;
   color: black;
   font-style: italic;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
 
 }
 		p3n {
-			font-family: "Helvetica Neue", sans-serif;
+			font-family: "Montserrat", sans-serif;
 			color:#353536;
 			font-weight:1000;
 			font-size:20px;
@@ -112,7 +112,7 @@ p2 {
 		}
 
 		p2n {
-			font-family: "Helvetica Neue", sans-serif;
+			font-family: "Montserrat", sans-serif;
 			font-size:40px;
 			color:#353536;
 			font-weight:800;
@@ -134,7 +134,7 @@ p2 {
 
 
     h2n {
-      font-family: 'Helvetica-Neue', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size:15px;
       font-weight:200;
       font-variant: bold;
@@ -527,7 +527,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 700;
   line-height: 1.2;
 }
@@ -5730,7 +5730,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5832,7 +5832,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -10248,14 +10248,14 @@ img::-moz-selection {
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
-  font-family:"Helvetica Neue", "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.75rem;
   color: #fff;
   border: 0;
 }
 #mainNav .navbar-brand {
   color: #ff00cf;
-  font-family:"Helvetica Neue" "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
@@ -10264,7 +10264,7 @@ img::-moz-selection {
   height: 1.5rem;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
 
   font-size: 0.95rem;
   color: black;
@@ -10430,7 +10430,7 @@ header.masthead .masthead-heading {
 .portfolio-modal .modal-content p.item-intro {
   font-style: italic;
   margin-bottom: 2rem;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
 }
 .portfolio-modal .modal-content p {
   margin-bottom: 2rem;
@@ -10674,22 +10674,22 @@ section#contact form#contactForm .form-control:focus {
   box-shadow: none;
 }
 section#contact form#contactForm ::-webkit-input-placeholder {
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 700;
   color: teal;
 }
 section#contact form#contactForm :-moz-placeholder {
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 700;
   color: teal;
 }
 section#contact form#contactForm ::-moz-placeholder {
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 700;
   color: teal;
 }
 section#contact form#contactForm :-ms-input-placeholder {
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 700;
   color: teal;
 }
@@ -10697,5 +10697,5 @@ section#contact form#contactForm :-ms-input-placeholder {
 .footer {
   text-align: center;
   font-size: 0.9rem;
-  font-family:"Helvetica Neue", Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
+  font-family:"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, "Noto Color Emoji";
 }
