@@ -12,7 +12,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
 	     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js"></script>
-
+	    
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -194,6 +194,59 @@
 
       }
       .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+      
+      haz2,
+      haz3 {
+        margin: 10px;
+        font-size: 18px;
+      }
+      haz3 {
+        font-size: 16px;
+      }
+      p_haz {
+        margin: 10px;
+      }
+      .map-overlay-haz {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+       
+        margin-right: 20px;
+        font-family: Arial, sans-serif;
+        overflow: 200px;
+        border-radius: 3px;
+      }
+      #haz_map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #features-haz {
+        top: 0;
+        height: 100px;
+        margin-top: 50px;
+        width: 500px;
+        left: 50px;
+      }
+      #legend-haz {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        line-height: 18px;
+        height: 110px;
+        margin-bottom: 40px;
+        width: 80px;
+        top: 200px;
+        left: 100px;
+    
+      }
+      .legend-key-haz {
         display: inline-block;
         border-radius: 20%;
         width: 10px;
@@ -421,6 +474,95 @@ Climate change will increase the frequency and severity of water scarcity and cl
 <div class="embed-responsive embed-responsive-16by9">
 <iframe width='50%' height='400px' src="https://api.mapbox.com/styles/v1/monavijaykumar/ckw1ffkc10frw14qglue79llp.html?title=false&access_token=pk.eyJ1IjoibW9uYXZpamF5a3VtYXIiLCJhIjoiY2t1Y3ZsMnJ4MTRpOTMxbnpubXVjMWRteCJ9.ZhNW3sT9ZBrxNOuLOYmGxQ&zoomwheel=false#6.63/15.09/-86.967" title="Monochrome" style="border:none;"></iframe>
 <br><br/>
+	
+
+    <div id="haz_map"></div>
+    <div class="map-overlay-haz" id="features-haz">
+      <h2>Honduras Hazard Score by Municipality</h2>
+      <div id="pd"><p>Hover over a municipality</p></div>
+      <div id="pd2"><p>Hover over a return rate point</p></div>
+    </div>
+    <div class="map-overlay-haz" id="legend-haz"></div>
+
+    <script>
+      // define access token
+      mapboxgl.accessToken = 'pk.eyJ1IjoibW9uYXZpamF5a3VtYXIiLCJhIjoiY2t1Y3ZsMnJ4MTRpOTMxbnpubXVjMWRteCJ9.ZhNW3sT9ZBrxNOuLOYmGxQ';
+
+      // create map
+      const haz_map = new mapboxgl.Map({
+        container: 'haz_map', // container id
+        style: 'mapbox://styles/monavijaykumar/ckw1ffkc10frw14qglue79llp' // map style URL from Mapbox Studio
+      });
+
+      // wait for map to load before adjusting it
+     haz_map.on('load', () => {
+        // make a pointer cursor
+        haz_map.getCanvas().style.cursor = 'default';
+
+        // set map bounds to the continental US
+        haz_map.fitBounds([
+          [-84, 18, ],
+          [-89, 12.34]
+        ]);
+
+         //define layer names
+        const layers = [
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+        ];
+        const colors = [
+          '#39DFB8',
+          '#32BF9E',
+          '#299F83',
+          '#237F69',
+          '#195F4F',
+          '#103F34',
+          '#08201A',
+          '#000000',            
+        ];
+
+        // create legend
+         const legend = document.getElementById('legend-haz');
+
+        layers.forEach((layer, i) => {
+          const color = colors[i];
+          const item = document.createElement('div');
+          const key = document.createElement('span');
+          key.className = 'legend-key-haz';
+          key.style.backgroundColor = color;
+
+          const value = document.createElement('span');
+          value.innerHTML = `${layer}`;
+          item.appendChild(key);
+          item.appendChild(value);
+          legend.appendChild(item);
+       });
+
+        // change info window on hover
+        haz_map.on('mousemove', (event) => {
+          const hnd_haz = haz_map.queryRenderedFeatures(event.point, {
+            layers: ['honduras-9fb1ns']})
+          const hnd_return = haz_map.queryRenderedFeatures(event.point, {
+            layers: ['migration-9hevns']
+          });
+            
+          document.getElementById('pd').innerHTML = hnd_haz.length
+            ? `<h3>${hnd_haz[0].properties.adm2_name}</h3><p><strong><em>${hnd_haz[0].properties.haz_score}</strong> Hazard Score </em></p>`
+            : `<p>Hover over a municipality for Hazard Score</p>`;
+        
+          document.getElementById('pd2').innerHTML = hnd_return.length
+            ? `<h3>${hnd_return[0].properties.adm2_name}</h3><p><strong><em>${hnd_return[0].properties.return_rat}</strong> Return Rate </em></p>`
+            : `<p>Hover the border of the municipality for the Return Rate for the municipality </p>`;
+        });
+      });
+    </script>
+
 <p3n>In Honduras, with hurricanes and other extreme weather events becoming ever more powerful and frequent, increasing numbers of people in Honduras are having to flee their homes. The map indicates geographical areas of honduras that have been most impacted by extreme natural events and understand their correlation with migration flows (data source: WFP, 2021). The migration flows indicates the percentage of people returning per department. The map reveals that the percentage of people returning to safer departments such as Copan, Atlantida, Yoro, Santa Barbara, and Colon is higher than in departments with extreme climate risks. This could resonate that people of Honduras are willing to retuen if environments are safer and resilient. </p3n>
 
 </div>
