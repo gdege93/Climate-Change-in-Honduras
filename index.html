@@ -469,102 +469,37 @@ Climate change will increase the frequency and severity of water scarcity and cl
 <div class="text-left"> <h3 class="section-heading" >"The ‘spiralling crisis’ pushing Hondurans to flee north BUT is anyone coming back? </h3>
 <br><br/>
 
- </div>
+ <div class="row" position="center">
+<div class="col-6" position="right" max-height="500px">
 </div>
-	<br><br>
-	<div class="embed-responsive embed-responsive-16by9">
-	<iframe width='40%' height='400px' src="https://api.mapbox.com/styles/v1/shivaligowda/ckwtv81iu136v15vsm8rq39bg.html?title=false&access_token=pk.eyJ1Ijoic2hpdmFsaWdvd2RhIiwiYSI6ImNrd2FyaG9ybzB4djIyb29ycHlreWNwMmQifQ.s6pDe9YzZWN5D3oA1cZvQw&zoomwheel=false#7.46/14.621/-86.985" title="Monochrome" style="border:none;"></iframe>
+</div>
+<div class="row" position="right">
+<div class="col-3"position="right">
+</div>
+</div>
+
+<div class="col-12"position="center">
+<br><br>
+<div class="container" style="max-width:100%">
+
+<div style="border: solid teal" ...>
+<iframe style="width:100%; height:500px;d-block mx-auto;" src="assets/img/condensed/haz2.html" frameborder=0 >
+</iframe> </div>
+</div>
+
+        </div>
+        <div class="col-12">
+       <div class="text-left"><p class="text-muted">
+  </div>
 	</div>
-		<div class="container">	
-     <div id="haz_map"></div>
-    <div class="map-overlay-haz" id="features-haz">
-      <h2>Honduras Hazard Score by Municipality</h2>
-      <div id="pd_haz"><p>Hover over a municipality</p></div>
-      <div id="pd2_haz"><p>Hover over a return rate point</p></div>
-    </div>
-    <div class="map-overlay-haz" id="legend-haz"></div>
+</div>
+</div>
 
-       <script>
-      // define access token
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpdmFsaWdvd2RhIiwiYSI6ImNrd2FyaG9ybzB4djIyb29ycHlreWNwMmQifQ.s6pDe9YzZWN5D3oA1cZvQw';
+</div>
 
-      // create map
-      const haz_map = new mapboxgl.Map({
-        container: 'haz_map', // container id
-        style: 'mapbox://styles/shivaligowda/ckwtv81iu136v15vsm8rq39bg' // map style URL from Mapbox Studio
-      });
 
-      // wait for map to load before adjusting it
-     haz_map.on('load', () => {
-        // make a pointer cursor
-        haz_map.getCanvas().style.cursor = 'default';
-
-        // set map bounds to the continental US
-        haz_map.fitBounds([
-          [-84, 18],
-          [-89, 12.34]
-        ]);
-
-         //define layer names
-        const layers = [
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-        ];
-        const colors = [
-          '#39DFB8',
-          '#32BF9E',
-          '#299F83',
-          '#237F69',
-          '#195F4F',
-          '#103F34',
-          '#08201A',
-          '#000000',            
-        ];
-
-        // create legend
-         const legend = document.getElementById('legend-haz');
-
-        layers.forEach((layer, i) => {
-          const color = colors[i];
-          const item = document.createElement('div');
-          const key = document.createElement('span');
-          key.className = 'legend-key-haz';
-          key.style.backgroundColor = color;
-
-          const value = document.createElement('span');
-          value.innerHTML = `${layer}`;
-          item.appendChild(key);
-          item.appendChild(value);
-          legend.appendChild(item);
-       });
-
-        // change info window on hover
-        haz_map.on('mousemove', (event) => {
-          const hnd_haz = haz_map.queryRenderedFeatures(event.point, {
-            layers: ['honduras-8zvuea']})
-          const hnd_return = haz_map.queryRenderedFeatures(event.point, {
-            layers: ['honduras-return-points-ac7nfs']
-          });
-            
-          document.getElementById('pd_haz').innerHTML = hnd_haz.length
-            ? `<h3>${hnd_haz[0].properties.adm2_name}</h3><p><strong><em>${hnd_haz[0].properties.haz_score}</strong> Hazard Score </em></p>`
-            : `<p>Hover over a municipality for Hazard Score</p>`;
-        
-          document.getElementById('pd2_haz').innerHTML = hnd_return.length
-            ? `<h3>${hnd_return[0].properties.hnd_adm2_2}</h3><p><strong><em>${hnd_return[0].properties.hnd_adm_11}</strong> Return Rate </em></p>`
-            : `<p>Hover the border of the municipality for the Return Rate for the municipality </p>`;
-        });
-      });
-    </script>
 	</div>
-<div class="text-center">
-<p3n>In Honduras, with hurricanes and other extreme weather events becoming ever more powerful and frequent, increasing numbers of people in Honduras are having to flee their homes. The map indicates geographical areas of honduras that have been most impacted by extreme natural events and understand their correlation with migration flows (data source: WFP, 2021). The migration flows indicates the percentage of people returning per department. The map reveals that the percentage of people returning to safer departments such as Copan, Atlantida, Yoro, Santa Barbara, and Colon is higher than in departments with extreme climate risks. This could resonate that people of Honduras are willing to retuen if environments are safer and resilient. </p3n>
+    <div class="text-left"><p class="text-muted">In Honduras, with hurricanes and other extreme weather events becoming ever more powerful and frequent, increasing numbers of people in Honduras are having to flee their homes. The map indicates geographical areas of honduras that have been most impacted by extreme natural events and understand their correlation with migration flows (data source: WFP, 2021). The migration flows indicates the percentage of people returning per department. The map reveals that the percentage of people returning to safer departments such as Copan, Atlantida, Yoro, Santa Barbara, and Colon is higher than in departments with extreme climate risks. This could resonate that people of Honduras are willing to retuen if environments are safer and resilient. </p>
 
 </div>
 <p id="text1">
