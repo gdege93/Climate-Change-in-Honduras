@@ -470,60 +470,65 @@ Climate change will increase the frequency and severity of water scarcity and cl
  </div>
 </div>
 	<br><br>
-   <div id="hon_map"></div>
-    <div class="map-overlay" id="features">
-      <h2>Number of Households Experiencing Natural Hazards by Municipality in Cortes, Honduras</h2>
-      <div id="pd"><p>Hover over a municipality</p></div>
+     <div id="haz_map"></div>
+    <div class="map-overlay-haz" id="features-haz">
+      <h2>Honduras Hazard Score by Municipality</h2>
+      <div id="pd_haz"><p>Hover over a municipality</p></div>
+      <div id="pd2_haz"><p>Hover over a return rate point</p></div>
     </div>
-    <div class="map-overlay" id="legend"></div>
+    <div class="map-overlay-haz" id="legend-haz"></div>
 
-    <script>
+       <script>
       // define access token
       mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpdmFsaWdvd2RhIiwiYSI6ImNrd2FyaG9ybzB4djIyb29ycHlreWNwMmQifQ.s6pDe9YzZWN5D3oA1cZvQw';
 
       // create map
-      const hon_map = new mapboxgl.Map({
-        container: 'hon_map', // container id
-        style: 'mapbox://styles/shivaligowda/ckwaroxf20ds114n1gs1lll4l' // map style URL from Mapbox Studio
+      const haz_map = new mapboxgl.Map({
+        container: 'haz_map', // container id
+        style: 'mapbox://styles/shivaligowda/ckwtv81iu136v15vsm8rq39bg' // map style URL from Mapbox Studio
       });
 
       // wait for map to load before adjusting it
-     hon_map.on('load', () => {
+     haz_map.on('load', () => {
         // make a pointer cursor
-        hon_map.getCanvas().style.cursor = 'default';
+        haz_map.getCanvas().style.cursor = 'default';
 
         // set map bounds to the continental US
-        hon_map.fitBounds([
-          [-87.98931953236658, 15.981493732981166],
-          [-87.97258226156174, 14.692534784467053]
+        haz_map.fitBounds([
+          [-84, 18],
+          [-89, 12.34]
         ]);
 
-        // define layer names
+         //define layer names
         const layers = [
-          '0',
-          '1-4',
-          '5-15',
-          '16-26',
-          '27-37',
-          '38-47',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
         ];
         const colors = [
-          '#ffffff',
-          '#a6f7db',
-          '#78e8c1',
-          '#1be49e',
-          '#17cf8e',
-          '#10704e',
+          '#39DFB8',
+          '#32BF9E',
+          '#299F83',
+          '#237F69',
+          '#195F4F',
+          '#103F34',
+          '#08201A',
+          '#000000',            
         ];
 
         // create legend
-        const legend = document.getElementById('legend');
+         const legend = document.getElementById('legend-haz');
 
         layers.forEach((layer, i) => {
           const color = colors[i];
           const item = document.createElement('div');
           const key = document.createElement('span');
-          key.className = 'legend-key';
+          key.className = 'legend-key-haz';
           key.style.backgroundColor = color;
 
           const value = document.createElement('span');
@@ -531,16 +536,23 @@ Climate change will increase the frequency and severity of water scarcity and cl
           item.appendChild(key);
           item.appendChild(value);
           legend.appendChild(item);
-        });
+       });
 
         // change info window on hover
-        hon_map.on('mousemove', (event) => {
-          const hnd_shocks = hon_map.queryRenderedFeatures(event.point, {
-            layers: ['hnd-shocks-new-5kewph']
+        haz_map.on('mousemove', (event) => {
+          const hnd_haz = haz_map.queryRenderedFeatures(event.point, {
+            layers: ['honduras-8zvuea']})
+          const hnd_return = haz_map.queryRenderedFeatures(event.point, {
+            layers: ['honduras-return-points-ac7nfs']
           });
-          document.getElementById('pd').innerHTML = hnd_shocks.length
-            ? `<h3>${hnd_shocks[0].properties.ADM2_ES}</h3><p><strong><em>${hnd_shocks[0].properties.NHousehold}</strong> households experiencing natural hazards</em></p>`
-            : `<p>Hover over a municipality</p>`;
+            
+          document.getElementById('pd_haz').innerHTML = hnd_haz.length
+            ? `<h3>${hnd_haz[0].properties.adm2_name}</h3><p><strong><em>${hnd_haz[0].properties.haz_score}</strong> Hazard Score </em></p>`
+            : `<p>Hover over a municipality for Hazard Score</p>`;
+        
+          document.getElementById('pd2_haz').innerHTML = hnd_return.length
+            ? `<h3>${hnd_return[0].properties.hnd_adm2_2}</h3><p><strong><em>${hnd_return[0].properties.hnd_adm_11}</strong> Return Rate </em></p>`
+            : `<p>Hover the border of the municipality for the Return Rate for the municipality </p>`;
         });
       });
     </script>
