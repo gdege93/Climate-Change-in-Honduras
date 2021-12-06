@@ -12,8 +12,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
 	     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js"></script>
-	    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js"></script>
-    
+	    
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -26,9 +25,7 @@
         <link href="css/styles.css" rel="stylesheet" />
       <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css"
       rel="stylesheet"/>
-	    <link
-      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css"
-      rel="stylesheet"/>
+
         <style>
 
 
@@ -249,7 +246,6 @@
         height: 140px;
         margin-bottom: 40px;
         width: 80px;
-
     
       }
       .legend-key-haz {
@@ -477,8 +473,8 @@ Climate change will increase the frequency and severity of water scarcity and cl
     <div id="haz_map"></div>
     <div class="map-overlay-haz" id="features-haz">
       <h2>Honduras Hazard Score by Municipality</h2>
-      <div id="pd"><p>Hover over a municipality</p></div>
-      <div id="pd2"><p>Hover over a return rate point</p></div>
+      <div id="pd_hax"><p>Hover over a municipality</p></div>
+      <div id="pd2_haz"><p>Hover over a return rate point</p></div>
     </div>
     <div class="map-overlay-haz" id="legend-haz"></div>
 
@@ -550,11 +546,11 @@ Climate change will increase the frequency and severity of water scarcity and cl
             layers: ['honduras-return-points-ac7nfs']
           });
             
-          document.getElementById('pd').innerHTML = hnd_haz.length
+          document.getElementById('pd_haz').innerHTML = hnd_haz.length
             ? `<h3>${hnd_haz[0].properties.adm2_name}</h3><p><strong><em>${hnd_haz[0].properties.haz_score}</strong> Hazard Score </em></p>`
             : `<p>Hover over a municipality for Hazard Score</p>`;
         
-          document.getElementById('pd2').innerHTML = hnd_return.length
+          document.getElementById('pd2_haz').innerHTML = hnd_return.length
             ? `<h3>${hnd_return[0].properties.hnd_adm2_2}</h3><p><strong><em>${hnd_return[0].properties.hnd_adm_11}</strong> Return Rate </em></p>`
             : `<p>Hover the border of the municipality for the Return Rate for the municipality </p>`;
         });
