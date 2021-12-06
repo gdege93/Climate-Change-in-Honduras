@@ -481,14 +481,14 @@ Climate change will increase the frequency and severity of water scarcity and cl
     </div>
     <div class="map-overlay-haz" id="legend-haz"></div>
 
-    <script>
+       <script>
       // define access token
-      mapboxgl.accessToken = 'pk.eyJ1IjoibW9uYXZpamF5a3VtYXIiLCJhIjoiY2t1Y3ZsMnJ4MTRpOTMxbnpubXVjMWRteCJ9.ZhNW3sT9ZBrxNOuLOYmGxQ';
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpdmFsaWdvd2RhIiwiYSI6ImNrd2FyaG9ybzB4djIyb29ycHlreWNwMmQifQ.s6pDe9YzZWN5D3oA1cZvQw';
 
       // create map
       const haz_map = new mapboxgl.Map({
         container: 'haz_map', // container id
-        style: 'mapbox://styles/monavijaykumar/ckw1ffkc10frw14qglue79llp' // map style URL from Mapbox Studio
+        style: 'mapbox://styles/shivaligowda/ckwtv81iu136v15vsm8rq39bg' // map style URL from Mapbox Studio
       });
 
       // wait for map to load before adjusting it
@@ -544,9 +544,9 @@ Climate change will increase the frequency and severity of water scarcity and cl
         // change info window on hover
         haz_map.on('mousemove', (event) => {
           const hnd_haz = haz_map.queryRenderedFeatures(event.point, {
-            layers: ['honduras-9fb1ns']})
+            layers: ['honduras-8zvuea']})
           const hnd_return = haz_map.queryRenderedFeatures(event.point, {
-            layers: ['migration-9hevns']
+            layers: ['honduras-return-points-ac7nfs']
           });
             
           document.getElementById('pd').innerHTML = hnd_haz.length
@@ -554,7 +554,7 @@ Climate change will increase the frequency and severity of water scarcity and cl
             : `<p>Hover over a municipality for Hazard Score</p>`;
         
           document.getElementById('pd2').innerHTML = hnd_return.length
-            ? `<h3>${hnd_return[0].properties.adm2_name}</h3><p><strong><em>${hnd_return[0].properties.return_rat}</strong> Return Rate </em></p>`
+            ? `<h3>${hnd_return[0].properties.hnd_adm2_2}</h3><p><strong><em>${hnd_return[0].properties.hnd_adm_11}</strong> Return Rate </em></p>`
             : `<p>Hover the border of the municipality for the Return Rate for the municipality </p>`;
         });
       });
